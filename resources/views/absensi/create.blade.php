@@ -39,7 +39,7 @@
                             @if($agendas->count() == 1)
                                 @php $agenda = $agendas->first(); @endphp
                                 <input type="hidden" name="id_agenda" value="{{ $agenda->id_agenda }}">
-                                <div class="border border-primary border-opacity-40 rounded-4 p-3 bg-primary bg-opacity-5">
+                                <div class="border border-primary border-opacity-40 rounded-4 p-3 bg-primary bg-opacity-10">
                                     <div class="d-flex align-items-start">
                                         <div class="rounded-circle bg-primary bg-opacity-15 p-2 me-3 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; min-width: 44px;">
                                             <i class="bi bi-calendar-event text-primary"></i>
@@ -60,7 +60,7 @@
                                         <div class="col-12">
                                             <label class="w-100 cursor-pointer">
                                                 <input type="radio" name="id_agenda" value="{{ $agenda->id_agenda }}" class="d-none agenda-radio" {{ old('id_agenda') == $agenda->id_agenda ? 'checked' : '' }} required>
-                                                <div class="border border-secondary border-opacity-20 rounded-4 p-3 bg-secondary bg-opacity-5 agenda-card transition-all">
+                                                <div class="border border-secondary border-opacity-20 rounded-4 p-3 bg-light agenda-card transition-all">
                                                     <div class="d-flex align-items-start">
                                                         <div class="rounded-circle bg-secondary bg-opacity-15 p-2 me-3 d-flex align-items-center justify-content-center agenda-icon" style="width: 44px; height: 44px; min-width: 44px;">
                                                             <i class="bi bi-calendar-event text-secondary"></i>
@@ -201,12 +201,12 @@
 
         // Agenda card selection styling
         $('.agenda-radio').on('change', function() {
-            $('.agenda-card').removeClass('border-primary border-opacity-40').addClass('border-secondary border-opacity-20');
+            $('.agenda-card').removeClass('border-primary border-opacity-40 bg-primary bg-opacity-10').addClass('border-secondary border-opacity-20 bg-light');
             $('.agenda-icon').removeClass('bg-primary bg-opacity-15').addClass('bg-secondary bg-opacity-15');
             $('.agenda-icon i').removeClass('text-primary').addClass('text-secondary');
             
             var card = $(this).closest('label').find('.agenda-card');
-            card.removeClass('border-secondary border-opacity-20').addClass('border-primary border-opacity-40');
+            card.removeClass('border-secondary border-opacity-20 bg-light').addClass('border-primary border-opacity-40 bg-primary bg-opacity-10');
             card.find('.agenda-icon').removeClass('bg-secondary bg-opacity-15').addClass('bg-primary bg-opacity-15');
             card.find('.agenda-icon i').removeClass('text-secondary').addClass('text-primary');
         });
