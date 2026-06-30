@@ -275,6 +275,10 @@
             color: var(--text-heading) !important;
         }
 
+        .table td .btn i {
+            color: inherit !important;
+        }
+
         .page-link {
             background-color: #ffffff;
             border-color: var(--border-color);

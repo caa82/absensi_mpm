@@ -61,7 +61,7 @@
                                 <span class="text-softer"><i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ $agenda->lokasi }}</span>
                             </td>
                             <td class="text-center">
-                                <a href="{{ route('sekretaris.absensi.detail', $agenda->id_agenda) }}" class="btn btn-sm btn-info bg-opacity-20 text-info border-info border-opacity-30 me-1" title="Lihat Detail Absensi">
+                                <a href="{{ route('sekretaris.absensi.detail', $agenda->id_agenda) }}" class="btn btn-sm btn-info text-white me-1" title="Lihat Detail Absensi">
                                     <i class="bi bi-people-fill"></i>
                                 </a>
 
@@ -72,25 +72,21 @@
 
                                 {{-- Notula button: only for past/today agendas --}}
                                 @if($isPast || $agenda->tanggal_rapat == $today)
-                                    <a href="{{ route('sekretaris.agenda.notula', $agenda->id_agenda) }}" class="btn btn-sm bg-opacity-20 border-opacity-30 me-1 {{ $agenda->notula || $agenda->notula_file ? 'btn-success text-success border-success' : 'btn-secondary text-secondary border-secondary' }}" title="{{ $agenda->notula || $agenda->notula_file ? 'Notula Rapat (Tersedia)' : 'Unggah/Tulis Notula Rapat' }}">
+                                    <a href="{{ route('sekretaris.agenda.notula', $agenda->id_agenda) }}" class="btn btn-sm text-white me-1 {{ $agenda->notula || $agenda->notula_file ? 'btn-success' : 'btn-secondary' }}" title="{{ $agenda->notula || $agenda->notula_file ? 'Notula Rapat (Tersedia)' : 'Unggah/Tulis Notula Rapat' }}">
                                         <i class="bi bi-journal-text"></i>
                                     </a>
                                 @endif
 
                                 @if(!$isPast)
-                                    <a href="{{ route('sekretaris.agenda.edit', $agenda->id_agenda) }}" class="btn btn-sm btn-warning bg-opacity-20 text-warning border-warning border-opacity-30 me-1" title="Edit Agenda">
+                                    <a href="{{ route('sekretaris.agenda.edit', $agenda->id_agenda) }}" class="btn btn-sm btn-warning text-white me-1" title="Edit Agenda">
                                         <i class="bi bi-pencil-fill"></i>
                                     </a>
-                                @else
-                                    <button class="btn btn-sm btn-secondary disabled me-1" title="Agenda sudah lewat" style="opacity: 0.5;">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </button>
                                 @endif
 
                                 <form action="{{ route('sekretaris.agenda.destroy', $agenda->id_agenda) }}" method="POST" class="d-inline delete-form">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger bg-opacity-20 text-danger border-danger border-opacity-30 btn-delete" title="Hapus Agenda">
+                                    <button type="submit" class="btn btn-sm btn-danger text-white btn-delete" title="Hapus Agenda">
                                         <i class="bi bi-trash-fill"></i>
                                     </button>
                                 </form>
