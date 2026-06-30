@@ -7,7 +7,7 @@
 
     <div class="row mb-4">
         <div class="col-12">
-            <h3 class="text-white font-weight-bold">Edit Agenda Rapat</h3>
+            <h3 class="text-heading font-weight-bold">Edit Agenda Rapat</h3>
             <p class="text-secondary">Perbarui rincian agenda rapat yang telah dibuat.</p>
         </div>
     </div>

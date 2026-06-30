@@ -7,7 +7,7 @@
 
     <div class="row mb-4">
         <div class="col-12">
-            <h3 class="text-white font-weight-bold">Pengaturan Profil & Keamanan</h3>
+            <h3 class="text-heading font-weight-bold">Pengaturan Profil & Keamanan</h3>
             <p class="text-secondary">Kelola data keanggotaan Anda dan atur kata sandi akun.</p>
         </div>
     </div>
@@ -17,7 +17,7 @@
         <!-- Profile Info Form Column -->
         <div class="col-lg-6">
             <div class="glass-card">
-                <h5 class="card-title-premium text-white">
+                <h5 class="card-title-premium">
                     <i class="bi bi-person-fill text-primary"></i> Edit Informasi Profil
                 </h5>
 
@@ -87,7 +87,7 @@
         <!-- Security / Password Column -->
         <div class="col-lg-6">
             <div class="glass-card h-100">
-                <h5 class="card-title-premium text-white">
+                <h5 class="card-title-premium">
                     <i class="bi bi-shield-lock-fill text-warning"></i> Ganti Password Akun
                 </h5>
 

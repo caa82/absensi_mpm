@@ -8,7 +8,7 @@
     <!-- Header Row -->
     <div class="row mb-4">
         <div class="col-12">
-            <h3 class="text-white font-weight-bold">Dashboard Anggota</h3>
+            <h3 class="text-heading font-weight-bold">Dashboard Anggota</h3>
             <p class="text-secondary">Informasi ringkasan kehadiran dan agenda rapat Anda.</p>
         </div>
     </div>
@@ -28,7 +28,7 @@
                         </div>
                     @endif
                 </div>
-                <h4 class="text-white font-weight-bold mb-1">{{ $anggota->nama_anggota }}</h4>
+                <h4 class="text-heading font-weight-bold mb-1">{{ $anggota->nama_anggota }}</h4>
                 <p class="text-secondary mb-2">{{ $anggota->jabatan }}</p>
                 <small class="text-muted mb-3">NIM: {{ $anggota->nim }} | Angkatan: {{ $anggota->angkatan }}</small>
                 
@@ -50,7 +50,7 @@
                 
                 <div class="row align-items-center my-3">
                     <div class="col-sm-5 text-center text-sm-start mb-3 mb-sm-0">
-                        <h1 class="display-3 text-white font-weight-bold mb-0" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        <h1 class="display-3 text-heading font-weight-bold mb-0" style="background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                             {{ $stats['percentage'] }}%
                         </h1>
                         <small class="text-secondary">Persentase Kehadiran</small>
@@ -130,7 +130,7 @@
                 
                 @if($upcoming_agenda)
                     <div class="p-3 bg-secondary bg-opacity-10 border border-secondary border-opacity-15 rounded-4 mt-3">
-                        <h6 class="text-white font-weight-bold mb-2">{{ $upcoming_agenda->judul_agenda }}</h6>
+                        <h6 class="text-heading font-weight-bold mb-2">{{ $upcoming_agenda->judul_agenda }}</h6>
                         <p class="text-secondary small mb-3">{{ Str::limit($upcoming_agenda->deskripsi, 120) }}</p>
                         
                         <div class="row g-2 text-secondary small mb-3">
@@ -169,7 +169,7 @@
                         @foreach($recent_history as $absen)
                             <div class="list-group-item bg-transparent border-secondary border-opacity-10 px-0 py-3 d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h6 class="text-white font-weight-semibold mb-1">{{ $absen->judul_agenda }}</h6>
+                                    <h6 class="text-heading font-weight-semibold mb-1">{{ $absen->judul_agenda }}</h6>
                                     <small class="text-secondary d-block">
                                         <i class="bi bi-calendar me-1"></i> {{ date('d M Y', strtotime($absen->tanggal_rapat)) }} | {{ date('H:i', strtotime($absen->waktu_absen)) }} WIB
                                     </small>

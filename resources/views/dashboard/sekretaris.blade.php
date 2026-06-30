@@ -8,7 +8,7 @@
     <!-- Header Row -->
     <div class="row mb-4">
         <div class="col-12">
-            <h3 class="text-white font-weight-bold">Dashboard Sekretaris</h3>
+            <h3 class="text-heading font-weight-bold">Dashboard Sekretaris</h3>
             <p class="text-secondary">Statistik tingkat kehadiran dan ringkasan aktivitas organisasi MPM.</p>
         </div>
     </div>
@@ -24,7 +24,7 @@
                 </div>
                 <div>
                     <h6 class="text-secondary mb-1">Total Anggota</h6>
-                    <h3 class="text-white mb-0 font-weight-bold">{{ $total_anggota }}</h3>
+                    <h3 class="text-heading mb-0 font-weight-bold">{{ $total_anggota }}</h3>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                 </div>
                 <div>
                     <h6 class="text-secondary mb-1">Total Agenda</h6>
-                    <h3 class="text-white mb-0 font-weight-bold">{{ $total_agenda }}</h3>
+                    <h3 class="text-heading mb-0 font-weight-bold">{{ $total_agenda }}</h3>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div>
                     <h6 class="text-secondary mb-1">Total Absensi</h6>
-                    <h3 class="text-white mb-0 font-weight-bold">{{ $total_absensi }}</h3>
+                    <h3 class="text-heading mb-0 font-weight-bold">{{ $total_absensi }}</h3>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
                 </div>
                 <div>
                     <h6 class="text-secondary mb-1">Kehadiran Rata-Rata</h6>
-                    <h3 class="text-white mb-0 font-weight-bold">{{ $average_attendance }}%</h3>
+                    <h3 class="text-heading mb-0 font-weight-bold">{{ $average_attendance }}%</h3>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
                             {{ strtoupper(substr($anggota_terajin['nama'], 0, 1)) }}
                         </div>
                         <div>
-                            <h6 class="text-white mb-0 font-weight-semibold">{{ $anggota_terajin['nama'] }}</h6>
+                            <h6 class="text-heading mb-0 font-weight-semibold">{{ $anggota_terajin['nama'] }}</h6>
                             <small class="text-secondary">{{ $anggota_terajin['jabatan'] }} (NIM: {{ $anggota_terajin['nim'] }})</small>
                             <div class="mt-1">
                                 <span class="badge bg-success bg-opacity-25 text-success">Kehadiran: {{ $anggota_terajin['percentage'] }}%</span>
@@ -110,7 +110,7 @@
                             {{ strtoupper(substr($anggota_tidak_hadir['nama'], 0, 1)) }}
                         </div>
                         <div>
-                            <h6 class="text-white mb-0 font-weight-semibold">{{ $anggota_tidak_hadir['nama'] }}</h6>
+                            <h6 class="text-heading mb-0 font-weight-semibold">{{ $anggota_tidak_hadir['nama'] }}</h6>
                             <small class="text-secondary">{{ $anggota_tidak_hadir['jabatan'] }} (NIM: {{ $anggota_tidak_hadir['nim'] }})</small>
                             <div class="mt-1">
                                 <span class="badge bg-danger bg-opacity-25 text-danger">Kehadiran: {{ $anggota_tidak_hadir['percentage'] }}%</span>
@@ -182,7 +182,7 @@
                                 @foreach($upcoming_agendas as $agenda)
                                     <tr>
                                         <td>
-                                            <span class="text-white font-weight-semibold">{{ $agenda->judul_agenda }}</span>
+                                            <span class="text-heading font-weight-semibold">{{ $agenda->judul_agenda }}</span>
                                         </td>
                                         <td>{{ date('d M Y', strtotime($agenda->tanggal_rapat)) }}</td>
                                         <td>{{ substr($agenda->waktu_mulai, 0, 5) }} - {{ substr($agenda->waktu_selesai, 0, 5) }} WIB</td>

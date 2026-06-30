@@ -7,7 +7,7 @@
 
     <div class="row mb-4">
         <div class="col-12">
-            <h3 class="text-white font-weight-bold">Buat Agenda Rapat</h3>
+            <h3 class="text-heading font-weight-bold">Buat Agenda Rapat</h3>
             <p class="text-secondary">Tambahkan agenda rapat baru untuk anggota MPM Politeknik Astra.</p>
         </div>
     </div>
