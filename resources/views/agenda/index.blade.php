@@ -7,8 +7,8 @@
 
     <div class="row mb-4 align-items-center">
         <div class="col-sm-6">
-            <h3 class="text-white font-weight-bold">Kelola Agenda Rapat</h3>
-            <p class="text-secondary mb-0">Buat dan atur jadwal rapat pengurus serta pantau absensinya.</p>
+            <h3 class="text-heading font-weight-bold">Kelola Agenda Rapat</h3>
+            <p class="text-softer mb-0">Buat dan atur jadwal rapat pengurus serta pantau absensinya.</p>
         </div>
         <div class="col-sm-6 text-sm-end mt-3 mt-sm-0">
             <a href="{{ route('sekretaris.agenda.create') }}" class="btn btn-premium">
@@ -44,31 +44,38 @@
                         <th>Tanggal Rapat</th>
                         <th>Waktu</th>
                         <th>Lokasi</th>
-                        <th class="text-center" style="width: 250px;">Aksi</th>
+                        <th class="text-center" style="width: 300px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse($agendas as $index => $agenda)
                         <tr>
-                            <td class="text-center text-white">{{ $agendas->firstItem() + $index }}</td>
+                            <td class="text-center">{{ $agendas->firstItem() + $index }}</td>
                             <td>
-                                <span class="text-white font-weight-semibold d-block">{{ $agenda->judul_agenda }}</span>
-                                <small class="text-secondary d-inline-block text-truncate" style="max-width: 300px;">{{ $agenda->deskripsi ?? 'Tidak ada deskripsi.' }}</small>
+                                <span class="text-heading font-weight-semibold d-block">{{ $agenda->judul_agenda }}</span>
+                                <small class="text-softer d-inline-block text-truncate" style="max-width: 300px;">{{ $agenda->deskripsi ?? 'Tidak ada deskripsi.' }}</small>
                             </td>
                             <td>{{ date('d F Y', strtotime($agenda->tanggal_rapat)) }}</td>
                             <td>{{ substr($agenda->waktu_mulai, 0, 5) }} - {{ substr($agenda->waktu_selesai, 0, 5) }} WIB</td>
                             <td>
-                                <span class="text-secondary"><i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ $agenda->lokasi }}</span>
+                                <span class="text-softer"><i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ $agenda->lokasi }}</span>
                             </td>
                             <td class="text-center">
                                 <a href="{{ route('sekretaris.absensi.detail', $agenda->id_agenda) }}" class="btn btn-sm btn-info bg-opacity-20 text-info border-info border-opacity-30 me-1" title="Lihat Detail Absensi">
-                                    <i class="bi bi-people-fill"></i> Absensi
+                                    <i class="bi bi-people-fill"></i>
                                 </a>
 
                                 @php
                                     $today = date('Y-m-d');
                                     $isPast = $agenda->tanggal_rapat < $today;
                                 @endphp
+
+                                {{-- Notula button: only for past/today agendas --}}
+                                @if($isPast || $agenda->tanggal_rapat == $today)
+                                    <a href="{{ route('sekretaris.agenda.notula', $agenda->id_agenda) }}" class="btn btn-sm bg-opacity-20 border-opacity-30 me-1 {{ $agenda->notula || $agenda->notula_file ? 'btn-success text-success border-success' : 'btn-secondary text-secondary border-secondary' }}" title="{{ $agenda->notula || $agenda->notula_file ? 'Notula Rapat (Tersedia)' : 'Unggah/Tulis Notula Rapat' }}">
+                                        <i class="bi bi-journal-text"></i>
+                                    </a>
+                                @endif
 
                                 @if(!$isPast)
                                     <a href="{{ route('sekretaris.agenda.edit', $agenda->id_agenda) }}" class="btn btn-sm btn-warning bg-opacity-20 text-warning border-warning border-opacity-30 me-1" title="Edit Agenda">
@@ -91,7 +98,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center py-4 text-secondary">Tidak ada data agenda rapat ditemukan.</td>
+                            <td colspan="6" class="text-center py-4 text-softer">Tidak ada data agenda rapat ditemukan.</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -99,7 +106,7 @@
         </div>
 
         <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
-            <div class="text-secondary small">
+            <div class="text-softer small">
                 Menampilkan {{ $agendas->firstItem() ?? 0 }} sampai {{ $agendas->lastItem() ?? 0 }} dari {{ $agendas->total() }} agenda
             </div>
             <div>

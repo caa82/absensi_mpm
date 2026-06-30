@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="border-top border-secondary border-opacity-10 pt-3">
-                    <small class="text-secondary">Perhitungan bobot: Hadir (1.0), Izin (0.75), Shift 2 Hadir Sebagian (0.5), Shift 2 Tidak Hadir (0.0).</small>
+                    <small class="text-secondary">Perhitungan bobot: Hadir (1, Izin (0), Sakit (0), Shift 2 Hadir Sebagian (0.5), Shift 2 Tidak Hadir ().</small>
                 </div>
             </div>
         </div>
@@ -80,30 +80,37 @@
     </div>
 
     <!-- Attendance Breakdown Cards Grid -->
-    <div class="row mb-4 g-3">
+    <div class="row row-cols-2 row-cols-md-5 g-3 mb-4">
         <!-- Hadir -->
-        <div class="col-6 col-md-3">
+        <div class="col">
             <div class="glass-card text-center p-3">
                 <h6 class="text-secondary mb-2">Hadir</h6>
                 <h2 class="text-success font-weight-bold mb-0">{{ $stats['hadir'] }}</h2>
             </div>
         </div>
+        <!-- Sakit -->
+        <div class="col">
+            <div class="glass-card text-center p-3">
+                <h6 class="text-secondary mb-2">Sakit</h6>
+                <h2 class="font-weight-bold mb-0" style="color: #ec4899;">{{ $stats['sakit'] }}</h2>
+            </div>
+        </div>
         <!-- Izin -->
-        <div class="col-6 col-md-3">
+        <div class="col">
             <div class="glass-card text-center p-3">
                 <h6 class="text-secondary mb-2">Izin</h6>
                 <h2 class="text-warning font-weight-bold mb-0">{{ $stats['izin'] }}</h2>
             </div>
         </div>
         <!-- Shift 2 Sebagian -->
-        <div class="col-6 col-md-3">
+        <div class="col">
             <div class="glass-card text-center p-3">
                 <h6 class="text-secondary mb-2">Shift 2 Sebagian</h6>
                 <h2 class="text-info font-weight-bold mb-0">{{ $stats['shift_2_hadir'] }}</h2>
             </div>
         </div>
         <!-- Shift 2 Tidak Hadir -->
-        <div class="col-6 col-md-3">
+        <div class="col">
             <div class="glass-card text-center p-3">
                 <h6 class="text-secondary mb-2">Shift 2 Tidak Hadir</h6>
                 <h2 class="text-danger font-weight-bold mb-0">{{ $stats['shift_2_absen'] }}</h2>
@@ -179,6 +186,8 @@
                                     <span class="badge badge-shift2-absen">Shift 2 Absen</span>
                                 @elseif($absen->id_status == 4)
                                     <span class="badge badge-izin">Izin</span>
+                                @elseif($absen->id_status == 5)
+                                    <span class="badge badge-sakit">Sakit</span>
                                 @endif
                             </div>
                         @endforeach

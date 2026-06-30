@@ -33,9 +33,14 @@ Route::middleware('auth')->group(function () {
         // Agenda Rapat CRUD
         Route::resource('agenda', AgendaController::class);
 
+        // Notula Routes
+        Route::get('/agenda/{id}/notula', [AgendaController::class, 'showNotula'])->name('agenda.notula');
+        Route::post('/agenda/{id}/notula', [AgendaController::class, 'storeNotula'])->name('agenda.notula.store');
+
         // Absensi Management & Recap
         Route::get('/absensi/rekap', [AbsensiController::class, 'rekap'])->name('absensi.rekap');
         Route::get('/absensi/export', [AbsensiController::class, 'export'])->name('absensi.export');
+        Route::get('/absensi/export-pdf', [AbsensiController::class, 'exportPdf'])->name('absensi.export-pdf');
         Route::get('/absensi/detail/{id_agenda}', [AbsensiController::class, 'detail'])->name('absensi.detail');
         Route::post('/absensi/verify-izin/{id_izin}', [AbsensiController::class, 'verifyIzin'])->name('absensi.verify-izin');
     });
@@ -45,6 +50,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'anggotaDashboard'])->name('dashboard');
         Route::get('/absensi/isi', [AbsensiController::class, 'create'])->name('absensi.create');
         Route::post('/absensi/store', [AbsensiController::class, 'store'])->name('absensi.store');
+
+        // Daftar Rapat & Detail (Anggota)
+        Route::get('/rapat', [AgendaController::class, 'rapatIndex'])->name('rapat.index');
+        Route::get('/rapat/{id}', [AgendaController::class, 'rapatShow'])->name('rapat.show');
     });
 });
-

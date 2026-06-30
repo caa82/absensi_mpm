@@ -188,10 +188,9 @@
                                         <td>{{ substr($agenda->waktu_mulai, 0, 5) }} - {{ substr($agenda->waktu_selesai, 0, 5) }} WIB</td>
                                         <td>
                                             <span class="text-secondary"><i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ $agenda->lokasi }}</span>
-                                        </td>
                                         <td class="text-center">
-                                            <a href="{{ route('sekretaris.absensi.detail', $agenda->id_agenda) }}" class="btn btn-sm btn-premium py-1 px-3">
-                                                Detail Absen
+                                            <a href="{{ route('sekretaris.absensi.detail', $agenda->id_agenda) }}" class="btn btn-sm btn-premium py-1 px-2" title="Detail Absen">
+                                                <i class="bi bi-eye-fill"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -225,8 +224,8 @@
                 datasets: [{
                     label: 'Persentase Kehadiran',
                     data: trendData.length > 0 ? trendData : [0],
-                    borderColor: '#3b82f6',
-                    backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                    borderColor: '#8b5cf6',
+                    backgroundColor: 'rgba(139, 92, 246, 0.15)',
                     borderWidth: 3,
                     fill: true,
                     tension: 0.4

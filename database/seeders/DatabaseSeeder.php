@@ -45,7 +45,12 @@ class DatabaseSeeder extends Seeder
         $statusIzin = StatusAbsensi::create([
             'id_status' => 4,
             'nama_status' => 'Izin',
-            'bobot_kehadiran' => 0.75
+            'bobot_kehadiran' => 0.00
+        ]);
+        $statusSakit = StatusAbsensi::create([
+            'id_status' => 5,
+            'nama_status' => 'Sakit',
+            'bobot_kehadiran' => 0.00
         ]);
 
         // 3. Create Anggota & Users

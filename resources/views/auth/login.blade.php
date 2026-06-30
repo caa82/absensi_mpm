@@ -21,13 +21,13 @@
     
     <style>
         :root {
-            --primary-bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.65);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-blue: #3b82f6;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --primary-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --text-primary: #334155;
+            --text-secondary: #64748b;
+            --accent-blue: #8b5cf6;
+            --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
         }
 
         body {
@@ -48,7 +48,7 @@
             width: 350px;
             height: 350px;
             border-radius: 50%;
-            background: rgba(59, 130, 246, 0.2);
+            background: rgba(139, 92, 246, 0.08);
             filter: blur(80px);
             top: -100px;
             left: -100px;
@@ -60,7 +60,7 @@
             width: 350px;
             height: 350px;
             border-radius: 50%;
-            background: rgba(139, 92, 246, 0.15);
+            background: rgba(139, 92, 246, 0.06);
             filter: blur(80px);
             bottom: -100px;
             right: -100px;
@@ -77,12 +77,10 @@
 
         .login-card {
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 2.5rem;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 35px -5px rgba(139, 92, 246, 0.05), 0 10px 15px -6px rgba(139, 92, 246, 0.05);
         }
 
         .logo-box {
@@ -94,7 +92,7 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.25);
         }
 
         .logo-box i {
@@ -130,18 +128,18 @@
         }
 
         .form-control {
-            background-color: rgba(15, 23, 42, 0.6);
+            background-color: #ffffff;
             border: 1px solid var(--border-color);
             color: var(--text-primary);
             border-radius: 14px;
             padding: 0.75rem 1rem;
-            transition: all 0.3s;
+            transition: all 0.2s ease;
         }
 
         .form-control:focus {
-            background-color: rgba(15, 23, 42, 0.8);
+            background-color: #ffffff;
             border-color: var(--accent-blue);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
             color: var(--text-primary);
         }
 
@@ -153,19 +151,19 @@
             border-radius: 14px;
             font-weight: 700;
             width: 100%;
-            transition: all 0.3s;
+            transition: all 0.25s ease;
             margin-top: 1rem;
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.2);
         }
 
         .btn-login:hover {
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
             transform: translateY(-1px);
         }
 
         .alert-custom {
-            background-color: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
             color: #ef4444;
             border-radius: 14px;
             font-size: 0.85rem;
@@ -230,9 +228,9 @@
                     icon: 'success',
                     title: 'Berhasil!',
                     text: "{{ session('success') }}",
-                    background: '#1e293b',
-                    color: '#f8fafc',
-                    confirmButtonColor: '#3b82f6'
+                    background: '#ffffff',
+                    color: '#1e293b',
+                    confirmButtonColor: '#8b5cf6'
                 });
             @endif
         });

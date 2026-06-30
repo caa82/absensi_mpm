@@ -19,6 +19,8 @@ class AgendaRapat extends Model
         'waktu_mulai',
         'waktu_selesai',
         'lokasi',
+        'notula',
+        'notula_file',
         'dibuat_oleh',
     ];
 

@@ -10,5 +10,5 @@ interface AbsensiRepositoryInterface
     public function getMonthlyAttendanceTrend();
     public function getStatusDistribution();
     public function getAllCount();
-    public function getReportData($month = null, $year = null);
+    public function getReportData($month = null, $year = null, $search = null);
 }

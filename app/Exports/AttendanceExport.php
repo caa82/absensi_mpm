@@ -53,6 +53,7 @@ class AttendanceExport implements FromArray, WithHeadings, WithStyles, WithDrawi
             'Jabatan',
             'Jumlah Hadir',
             'Jumlah Izin',
+            'Jumlah Sakit',
             'Jumlah Shift 2 Hadir Sebagian',
             'Jumlah Shift 2 Tidak Hadir',
             'Persentase Kehadiran'
@@ -72,22 +73,22 @@ class AttendanceExport implements FromArray, WithHeadings, WithStyles, WithDrawi
         $sheet->getStyle('C4')->getFont()->setItalic(true)->setSize(10);
 
         // Style the table header row (Row 7)
-        $sheet->getStyle('A7:I7')->getFont()->setBold(true)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE));
-        $sheet->getStyle('A7:I7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('FF0C2340'); // MPM Navy
+        $sheet->getStyle('A7:J7')->getFont()->setBold(true)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE));
+        $sheet->getStyle('A7:J7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('FF0C2340'); // MPM Navy
 
         // Alignments and borders
         $rowCount = count($this->data) + 7;
-        $sheet->getStyle('A7:I' . $rowCount)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+        $sheet->getStyle('A7:J' . $rowCount)->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
 
         $sheet->getStyle('A8:A' . $rowCount)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
         $sheet->getStyle('B8:B' . $rowCount)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
         
-        $sheet->getStyle('E8:I' . $rowCount)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('E8:J' . $rowCount)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
         // Add percentage sign to final column values
         for ($i = 8; $i <= $rowCount; $i++) {
-            $val = $sheet->getCell('I' . $i)->getValue();
-            $sheet->getCell('I' . $i)->setValue($val . '%');
+            $val = $sheet->getCell('J' . $i)->getValue();
+            $sheet->getCell('J' . $i)->setValue($val . '%');
         }
 
         return [];

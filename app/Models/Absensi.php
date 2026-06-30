@@ -18,6 +18,7 @@ class Absensi extends Model
         'id_status',
         'waktu_absen',
         'keterangan',
+        'bukti_foto',
     ];
 
     public function agenda()

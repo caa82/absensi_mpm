@@ -47,16 +47,17 @@ class ProfileController extends Controller
             $anggota = $this->anggotaRepo->findById($anggotaId);
             if ($anggota && $anggota->foto_anggota) {
                 // Extract file path from URL
-                $oldPath = str_replace('/storage/', 'public/', $anggota->foto_anggota);
-                if (Storage::exists($oldPath)) {
-                    Storage::delete($oldPath);
+                $parsedUrl = parse_url($anggota->foto_anggota, PHP_URL_PATH);
+                $oldPath = preg_replace('/^\/storage\//', '', $parsedUrl);
+                if (Storage::disk('public')->exists($oldPath)) {
+                    Storage::disk('public')->delete($oldPath);
                 }
             }
 
             $file = $request->file('foto_anggota');
             $filename = 'foto_' . $anggotaId . '_' . time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('public/foto_anggota', $filename);
-            $data['foto_anggota'] = Storage::url($path);
+            $path = $file->storeAs('foto_anggota', $filename, 'public');
+            $data['foto_anggota'] = parse_url(Storage::disk('public')->url($path), PHP_URL_PATH);
         }
 
         $this->anggotaRepo->updateProfile($anggotaId, $data);

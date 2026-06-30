@@ -37,9 +37,10 @@ class AbsensiRepository implements AbsensiRepositoryInterface
             $shift2Hadir = $absensiList->where('id_status', 2)->count();
             $shift2Absen = $absensiList->where('id_status', 3)->count();
             $izin = $absensiList->where('id_status', 4)->count();
+            $sakit = $absensiList->where('id_status', 5)->count();
 
             // Total weight
-            $totalWeight = ($hadir * 1.0) + ($shift2Hadir * 0.5) + ($shift2Absen * 0.0) + ($izin * 0.75);
+            $totalWeight = ($hadir * 1.0) + ($shift2Hadir * 0.5) + ($shift2Absen * 0.0) + ($izin * 0.0) + ($sakit * 0.0);
 
             // Calculate percentage based on total past agendas
             $percentage = $totalAgendas > 0 ? round(($totalWeight / $totalAgendas) * 100, 2) : 0;
@@ -50,6 +51,7 @@ class AbsensiRepository implements AbsensiRepositoryInterface
                 'shift_2_hadir' => $shift2Hadir,
                 'shift_2_absen' => $shift2Absen,
                 'izin' => $izin,
+                'sakit' => $sakit,
                 'total_weight' => $totalWeight,
                 'percentage' => $percentage
             ];
@@ -93,7 +95,7 @@ class AbsensiRepository implements AbsensiRepositoryInterface
         return Absensi::count();
     }
 
-    public function getReportData($month = null, $year = null)
+    public function getReportData($month = null, $year = null, $search = null)
     {
         // 1. Get agendas in the filtered range
         $agendaQuery = AgendaRapat::query();
@@ -107,8 +109,16 @@ class AbsensiRepository implements AbsensiRepositoryInterface
         $agendas = $agendaQuery->pluck('id_agenda');
         $totalAgendasInPeriod = $agendas->count();
 
-        // 2. Fetch all members
-        $anggotaList = Anggota::where('status', 'Aktif')->orderBy('nama_anggota', 'asc')->get();
+        // 2. Fetch all members (with optional search filter)
+        $anggotaQuery = Anggota::where('status', 'Aktif');
+        if ($search) {
+            $anggotaQuery->where(function ($q) use ($search) {
+                $q->where('nama_anggota', 'like', "%{$search}%")
+                  ->orWhere('nim', 'like', "%{$search}%")
+                  ->orWhere('jabatan', 'like', "%{$search}%");
+            });
+        }
+        $anggotaList = $anggotaQuery->orderBy('nama_anggota', 'asc')->get();
 
         $report = [];
         foreach ($anggotaList as $idx => $anggota) {
@@ -121,14 +131,16 @@ class AbsensiRepository implements AbsensiRepositoryInterface
                 $shift2Hadir = $absens->where('id_status', 2)->count();
                 $shift2Absen = $absens->where('id_status', 3)->count();
                 $izin = $absens->where('id_status', 4)->count();
+                $sakit = $absens->where('id_status', 5)->count();
 
-                $totalWeight = ($hadir * 1.0) + ($shift2Hadir * 0.5) + ($shift2Absen * 0.0) + ($izin * 0.75);
+                $totalWeight = ($hadir * 1.0) + ($shift2Hadir * 0.5) + ($shift2Absen * 0.0) + ($izin * 0.0) + ($sakit * 0.0);
                 $percentage = round(($totalWeight / $totalAgendasInPeriod) * 100, 2);
             } else {
                 $hadir = 0;
                 $shift2Hadir = 0;
                 $shift2Absen = 0;
                 $izin = 0;
+                $sakit = 0;
                 $percentage = 0;
             }
 
@@ -139,6 +151,7 @@ class AbsensiRepository implements AbsensiRepositoryInterface
                 'jabatan' => $anggota->jabatan,
                 'hadir' => $hadir,
                 'izin' => $izin,
+                'sakit' => $sakit,
                 'shift_2_hadir' => $shift2Hadir,
                 'shift_2_absen' => $shift2Absen,
                 'percentage' => $percentage
