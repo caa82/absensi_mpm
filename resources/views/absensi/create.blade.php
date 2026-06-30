@@ -8,7 +8,7 @@
     <div class="row mb-4">
         <div class="col-12">
             <h3 class="text-heading font-weight-bold">Pengisian Absensi Rapat</h3>
-            <p class="text-softer">Absensi dibuka mulai H-24 jam hingga H-1 jam sebelum rapat dimulai. Silakan isi kehadiran Anda.</p>
+            <p class="text-softer">Absensi dibuka mulai 24 jam sebelum rapat dimulai hingga rapat selesai. Silakan isi kehadiran Anda.</p>
         </div>
     </div>
 
@@ -21,7 +21,7 @@
                         <i class="bi bi-clock-history" style="font-size: 2rem;"></i>
                     </div>
                     <h5 class="text-heading font-weight-bold">Belum Ada Rapat yang Bisa Diisi</h5>
-                    <p class="text-softer mb-0">Tidak ada agenda rapat aktif saat ini. Absensi dibuka mulai H-24 jam hingga H-1 jam sebelum rapat dimulai.</p>
+                    <p class="text-softer mb-0">Tidak ada agenda rapat aktif saat ini. Absensi dibuka mulai 24 jam sebelum rapat dimulai hingga rapat selesai.</p>
                 </div>
             @else
                 <div class="glass-card">

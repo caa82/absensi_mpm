@@ -46,10 +46,10 @@ class AbsensiController extends Controller
         $now = Carbon::now();
         $nowStr = $now->toDateTimeString();
 
-        // Fetch agendas where current time is between: (meeting_time - 24 hours) and (meeting_time - 1 hour)
+        // Fetch agendas where current time is between: (meeting_time - 24 hours) and meeting end time (waktu_selesai)
         $query = AgendaRapat::whereRaw(
             "TIMESTAMP(CONCAT(tanggal_rapat, ' ', waktu_mulai)) - INTERVAL 24 HOUR <= ? 
-             AND TIMESTAMP(CONCAT(tanggal_rapat, ' ', waktu_mulai)) - INTERVAL 1 HOUR >= ?",
+             AND TIMESTAMP(CONCAT(tanggal_rapat, ' ', waktu_selesai)) >= ?",
             [$nowStr, $nowStr]
         );
 

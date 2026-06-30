@@ -116,20 +116,20 @@
                             <td class="text-center">
                                 @if($absen->id_status == 4 && $absen->izin)
                                     @if($absen->izin->status_verifikasi == 'Pending')
-                                        <form action="{{ route('sekretaris.absensi.verify-izin', $absen->izin->id_izin) }}" method="POST" class="d-inline verify-form">
-                                            @csrf
-                                            <input type="hidden" name="status" value="Disetujui">
-                                            <button type="submit" class="btn btn-sm btn-success bg-opacity-20 text-success border border-success border-opacity-30 btn-verify me-1">
-                                                Setuju
-                                            </button>
-                                        </form>
-                                        <form action="{{ route('sekretaris.absensi.verify-izin', $absen->izin->id_izin) }}" method="POST" class="d-inline verify-form">
-                                            @csrf
-                                            <input type="hidden" name="status" value="Ditolak">
-                                            <button type="submit" class="btn btn-sm btn-danger bg-opacity-20 text-danger border border-danger border-opacity-30 btn-verify">
-                                                Tolak
-                                            </button>
-                                        </form>
+                                         <form action="{{ route('sekretaris.absensi.verify-izin', $absen->izin->id_izin) }}" method="POST" class="d-inline verify-form">
+                                             @csrf
+                                             <input type="hidden" name="status" value="Disetujui">
+                                             <button type="submit" class="btn btn-sm btn-success text-white btn-verify me-1">
+                                                 Setuju
+                                             </button>
+                                         </form>
+                                         <form action="{{ route('sekretaris.absensi.verify-izin', $absen->izin->id_izin) }}" method="POST" class="d-inline verify-form">
+                                             @csrf
+                                             <input type="hidden" name="status" value="Ditolak">
+                                             <button type="submit" class="btn btn-sm btn-danger text-white btn-verify">
+                                                 Tolak
+                                             </button>
+                                         </form>
                                     @else
                                         @if($absen->izin->status_verifikasi == 'Disetujui')
                                             <span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-30 px-3 py-2">

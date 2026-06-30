@@ -136,8 +136,9 @@
                         @php
                             $now = \Carbon\Carbon::now();
                             $waktuMulai = \Carbon\Carbon::parse($agenda->tanggal_rapat . ' ' . $agenda->waktu_mulai);
+                            $waktuSelesai = \Carbon\Carbon::parse($agenda->tanggal_rapat . ' ' . $agenda->waktu_selesai);
                             $windowStart = $waktuMulai->copy()->subHours(24);
-                            $windowEnd = $waktuMulai->copy()->subHour();
+                            $windowEnd = $waktuSelesai;
                             $isOpen = $now->between($windowStart, $windowEnd);
                         @endphp
 
@@ -148,7 +149,7 @@
                         @else
                             <div class="text-muted small border-top border-secondary border-opacity-10 pt-2 mt-2">
                                 <i class="bi bi-info-circle me-1"></i>
-                                Absensi hanya dibuka mulai H-24 jam hingga H-1 jam sebelum rapat dimulai.
+                                Absensi dibuka mulai 24 jam sebelum rapat dimulai hingga rapat selesai.
                             </div>
                         @endif
                     </div>

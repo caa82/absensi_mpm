@@ -29,19 +29,20 @@ class AbsensiService
             throw new \Exception('Agenda tidak ditemukan.');
         }
 
-        // Check if current time is within allowed window (between 24 hours and 1 hour before waktu_mulai)
+        // Check if current time is within allowed window (between 24 hours before waktu_mulai and waktu_selesai)
         $now = Carbon::now();
         $waktuMulai = Carbon::parse($agenda->tanggal_rapat . ' ' . $agenda->waktu_mulai);
+        $waktuSelesai = Carbon::parse($agenda->tanggal_rapat . ' ' . $agenda->waktu_selesai);
         
         $windowStart = $waktuMulai->copy()->subHours(24);
-        $windowEnd = $waktuMulai->copy()->subHour();
+        $windowEnd = $waktuSelesai;
 
         if ($now->lt($windowStart)) {
             throw new \Exception('Absensi belum dibuka. Absensi baru dibuka mulai 24 jam sebelum rapat dimulai (' . $windowStart->format('d M Y, H:i') . ' WIB).');
         }
 
         if ($now->gt($windowEnd)) {
-            throw new \Exception('Absensi sudah ditutup. Absensi ditutup 1 jam sebelum rapat dimulai (' . $windowEnd->format('d M Y, H:i') . ' WIB).');
+            throw new \Exception('Absensi sudah ditutup. Absensi ditutup setelah rapat selesai (' . $windowEnd->format('d M Y, H:i') . ' WIB).');
         }
 
         // Check duplicate
